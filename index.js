@@ -1,5 +1,6 @@
 const Discord = require('discord.js')
-var commands = require('commands.js')
+var reload = require('require-reload'),
+		commands = reload('./commands.js')
 var fs = require('fs')
 , ini = require('ini')
 
@@ -15,7 +16,13 @@ client.on('ready', () => {
 client.on('message', message => {
   if (typeof commands['cmd_' + message.content] === 'function') { //checking if function exist
     commands['cmd_' + message.content](message)
-  }
+  }else if(message.content == "reload"){
+			try{
+			commands = reload('./commands.js')
+		} catch (e) {
+		console.error("Failed to reload commands.js! Error: ", e);
+	}
+}
 });
 
 

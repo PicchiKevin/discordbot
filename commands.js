@@ -1,8 +1,8 @@
 var commands = {
   cmd_ping: function(message){
     console.log("Ping received from: " + message.author.username + "#" + message.author.discriminator);
-    message.reply("pong");
-  }
+    message.reply("Pong");
+	}
 }
 
 module.exports = commands;
