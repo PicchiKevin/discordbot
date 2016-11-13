@@ -12,7 +12,7 @@
     "url": "git+https://github.com/PicchiKevin/discordbot.git"
   },
   "author": "Picchi Kevin",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/PicchiKevin/discordbot/issues"
   },
