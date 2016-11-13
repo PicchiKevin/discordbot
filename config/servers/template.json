@@ -1,8 +1,14 @@
 {
+  "config":{
+    "commandStart": "!"
+  },
+  "permissions": {
     "roles": {
         "rolename": "permission"
     },
     "users": {
-        "username": "permission"
-    }
+        "rolename": "permission"
+    },
+    "default": ["ping", "info"]
+  }
 }

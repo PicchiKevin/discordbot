@@ -13,14 +13,24 @@ var config = jsonfile.readFileSync('config/settings.json')
 
 function havePerms(message, command, callback){
   var result = false;
+
+  //default
   jsonfile.readFile('config/servers/' + message.guild.id + '.json', function(err, obj) {
-    if (typeof obj.users[message.author.id] !== 'undefined'){
-      for (var i = 0; i < obj.users[message.author.id].length; i++) {
-        if(obj.users[message.author.id][i] == command){
+    for (var i = 0; i < obj.permissions.default.length; i++) {
+      if(obj.permissions.default[i] == command){
+        result = true
+      }
+    }
+
+    //user
+    if (typeof obj.permissions.users[message.author.id] !== 'undefined'){
+      for (var i = 0; i < obj.permissions.users[message.author.id].length; i++) {
+        if(obj.permissions.users[message.author.id][i] == command){
           result = true
         }
       }
     }
+
     callback(result)
   })
 }
@@ -59,7 +69,7 @@ client.on('message', message => {
         }
       });
 
-    }else if (commands[0] == "reload") {
+    }else if (command[0] == "reload") {
       try{ commands = reload('./commands.js') }
       catch (e) { console.error("[ERR] Failed to reload commands.js! Error: ", e) }
       console.log("reloaded");
